@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class StudentRepository {
 
-//    I am using a set to ensure the uniqueness of each student.
+    // I am using a set to ensure the uniqueness of each student.
     private final Set<Student> students = new HashSet<>();
 
     public Set<Student> findNotDeleted() {
@@ -77,22 +77,28 @@ public class StudentRepository {
     }
 
     public boolean removeById(String id) {
-        for(Student student : this.students){
-            if(student.getId().equals(id)){
-               return students.remove(student);
+        for (Student student : this.students) {
+            if (student.getId().equals(id)) {
+                return students.remove(student);
             }
         }
         return false;
     }
 
     public Student findById(String id) {
-        for(Student student :students){
-            if(student.getId().equals(id)){
+        for (Student student : students) {
+            if (student.getId().equals(id)) {
                 return student;
             }
         }
         return null;
     }
 
-
+    public boolean checkEmail(){
+        for (Student student: students){
+            if(!student.getEmail().contains("@")){
+                return false  ;
+            }
+        }  return true  ;
+    }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.validators.ValidInputProvider;
 import model.Student;
 import service.StudentService;
 
@@ -78,8 +79,8 @@ public class StudentController {
             System.out.println(deletedStudent);
         }
 
-        System.out.println(" enter the id you want to delete permanently ");
 
+        System.out.println(" enter the id you want to delete permanently ");
         Scanner scanner = new Scanner(System.in);
         String id = scanner.nextLine();
         boolean isDeleted = service.deleteStudentPermanently(id);
@@ -108,9 +109,9 @@ public class StudentController {
         System.out.println("Last Name");
         String lastName = scanner.nextLine();
         System.out.println("Email:");
-        String email = scanner.nextLine();
+        String email = ValidInputProvider.getString();
         System.out.println("PhoneNumber:");
-        String phoneNumber = scanner.nextLine();
+        String phoneNumber = ValidInputProvider.getPhone();
         System.out.println("Department");
         String department = scanner.nextLine();
         service.editStudent(id , firstName,lastName,email,phoneNumber,department);

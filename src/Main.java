@@ -1,16 +1,19 @@
 import controller.ChoiceController;
 import controller.StudentController;
+import controller.validators.ValidInputProvider;
+import controller.validators.Validate;
 import model.Student;
 import repository.StudentRepository;
 import service.StudentService;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
+
+
+
         System.out.println("Application Start");
         StudentRepository studentRepository = new StudentRepository();
         StudentService studentService = new StudentService(studentRepository);
@@ -33,7 +36,6 @@ public class Main {
 
         studentRepository.addStudent(stud01);
         studentRepository.addStudent(stud02);
-
         boolean running = true;
         while (running) {
             printMenu();
@@ -73,10 +75,9 @@ public class Main {
 
         System.out.println("Application end");
     }
-
     private static void printMenu() {
         System.out.println(" menu:");
-        System.out.println(" exit : press 0 ");
+
         System.out.println(" menu: add a new student : press 1 ");
         System.out.println(" menu: search a student in the repository : press 2");
         System.out.println(" menu: get the list of  students  : press 3");
@@ -84,7 +85,7 @@ public class Main {
         System.out.println(" menu: delete a student permanently : press 5");
         System.out.println(" menu: edit a student  : press 6");
         System.out.println(" menu: reinstate student: press 7");
-
+        System.out.println(" exit : press 0 ");
     }
 
 

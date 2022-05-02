@@ -4,6 +4,7 @@ import model.Student;
 import repository.StudentRepository;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -35,7 +36,7 @@ public class StudentService {
 
     public List<Student> getStudentsByName(String searchTerm) {
         Set<Student> resultSet = repository.findByNameAndNotDeleted(searchTerm);
-        List<Student> studentsList = new ArrayList<>(resultSet);
+        List<Student> studentsList = new LinkedList<>(resultSet);
         return studentsList;
     }
 
@@ -77,4 +78,5 @@ public class StudentService {
         student.setDeleted(false);
         return true;
     }
+
 }
