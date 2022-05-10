@@ -93,12 +93,4 @@ public class StudentRepository {
         }
         return null;
     }
-
-    public boolean checkEmail(){
-        for (Student student: students){
-            if(!student.getEmail().contains("@")){
-                return false  ;
-            }
-        }  return true  ;
-    }
 }

@@ -18,9 +18,9 @@ public class StudentService {
 
     public List<Student> getStudents() {
         Set<Student> students = repository.findNotDeleted();
-        List<Student> orderedList = new ArrayList<>(students.size());
-        orderedList.addAll(students);
-        return orderedList;
+        List<Student> studentList = new ArrayList<>(students.size());
+        studentList.addAll(students);
+        return studentList;
     }
 
     public void createStudent(String firstName, String lastName, String email, String phoneNumber, String department) {
@@ -70,7 +70,7 @@ public class StudentService {
         return repository.findById(id);
     }
 
-    public boolean undoDelete(String id) {
+    public boolean undoDeleteStudent(String id) {
         Student student = repository.findById(id);
         if(student == null ) {
             return false;

@@ -1,6 +1,5 @@
 package controller;
 
-import controller.validators.ValidInputProvider;
 import model.Student;
 import service.StudentService;
 
@@ -126,7 +125,7 @@ public class StudentController {
         System.out.println(" Enter the id of the student you want to undo the deletion");
         Scanner scanner = new Scanner(System.in);
         String id = scanner.nextLine();
-        boolean undone = service.undoDelete(id);
+        boolean undone = service.undoDeleteStudent(id);
         if(undone) {
             System.out.println("Student deletion was undone");
         } else {

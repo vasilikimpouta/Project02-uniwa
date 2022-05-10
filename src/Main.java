@@ -1,7 +1,5 @@
 import controller.ChoiceController;
 import controller.StudentController;
-import controller.validators.ValidInputProvider;
-import controller.validators.Validate;
 import model.Student;
 import repository.StudentRepository;
 import service.StudentService;
@@ -11,8 +9,6 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-
-
 
         System.out.println("Application Start");
         StudentRepository studentRepository = new StudentRepository();
