@@ -5,7 +5,6 @@ import model.Student;
 import service.StudentService;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class StudentController {
 
@@ -25,13 +24,17 @@ public class StudentController {
 
     public void addStudent() {
         System.out.println("Create Student Form");
-        Student details = getStudentsDetails();
-        service.createStudent(details.getFirstName(), details.getLastName(), details.getEmail(),
-                details.getPhoneNumber(), details.getDepartment());
+        StudentInfo studentInfo = getStudentInfo();
+        service.createStudent(
+                studentInfo.getFirstName(),
+                studentInfo.getLastName(),
+                studentInfo.getEmail(),
+                studentInfo.getPhoneNumber(),
+                studentInfo.getDepartment()
+        );
     }
 
-    private Student getStudentsDetails() {
-
+    private StudentInfo getStudentInfo() {
         System.out.println("First Name:");
         String firstName = ValidInputProvider.getString();
         System.out.println("Last Name");
@@ -42,8 +45,7 @@ public class StudentController {
         String phoneNumber = ValidInputProvider.getPhone();
         System.out.println("Department");
         String department = ValidInputProvider.getString();
-
-        return new Student(firstName, lastName, email, phoneNumber, department);
+        return new StudentInfo(firstName, lastName, email, phoneNumber, department);
     }
 
     public void searchStudents() {
@@ -104,13 +106,13 @@ public class StudentController {
             return;
         }
         System.out.println("edit Student Form");
-        Student newDetails = getStudentsDetails();
+        StudentInfo studentInfo = getStudentInfo();
         service.editStudent(id,
-                newDetails.getFirstName(),
-                newDetails.getLastName(),
-                newDetails.getEmail(),
-                newDetails.getPhoneNumber(),
-                newDetails.getDepartment());
+                studentInfo.getFirstName(),
+                studentInfo.getLastName(),
+                studentInfo.getEmail(),
+                studentInfo.getPhoneNumber(),
+                studentInfo.getDepartment());
         System.out.println(" student was updated!");
     }
 
