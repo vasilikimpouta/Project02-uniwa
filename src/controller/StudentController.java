@@ -1,5 +1,6 @@
 package controller;
 
+import controller.validatation.ValidInputProvider;
 import model.Student;
 import service.StudentService;
 
@@ -24,24 +25,22 @@ public class StudentController {
 
     public void addStudent() {
         System.out.println("Create Student Form");
-        Scanner scan = new Scanner(System.in);
         System.out.println("First Name:");
-        String firstName = scan.nextLine();
+        String firstName = ValidInputProvider.getString();
         System.out.println("Last Name");
-        String lastName = scan.nextLine();
+        String lastName = ValidInputProvider.getString();
         System.out.println("Email:");
-        String email = scan.nextLine();
+        String email = ValidInputProvider.getEmail();
         System.out.println("PhoneNumber:");
-        String phoneNumber = scan.nextLine();
+        String phoneNumber = ValidInputProvider.getPhone();
         System.out.println("Department");
-        String department = scan.nextLine();
+        String department = ValidInputProvider.getString();
         service.createStudent(firstName, lastName, email, phoneNumber, department);
     }
 
     public void searchStudents() {
         System.out.println(" search by name a student:");
-        Scanner scanner = new Scanner(System.in);
-        String searchTerm = scanner.nextLine();
+        String searchTerm = ValidInputProvider.getString();
         List<Student> studentList = service.getStudentsByName(searchTerm);
         System.out.println("Results:");
         if (studentList.isEmpty()) {
@@ -60,8 +59,7 @@ public class StudentController {
             System.out.println(student);
         }
         System.out.println("enter the id of the student :");
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
+        String id = ValidInputProvider.getString();
         boolean isDeleted = service.deleteStudent(id) ;
         if(isDeleted){
             System.out.println(" successfully deleted");
@@ -71,17 +69,13 @@ public class StudentController {
     }
 
     public void deleteStudentPermanently() {
-
         System.out.println(" delete a student permanently :");
         List<Student> deletedStudent = service.getDeletedStudents();
         for (Student student : deletedStudent) {
             System.out.println(deletedStudent);
         }
-
-
         System.out.println(" enter the id you want to delete permanently ");
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
+        String id = ValidInputProvider.getString();
         boolean isDeleted = service.deleteStudentPermanently(id);
         if (isDeleted) {
             System.out.println(" student successfully deleted permanently ");
@@ -96,23 +90,22 @@ public class StudentController {
             System.out.println(student);
         }
         System.out.println("choose a student by id");
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
+        String id = ValidInputProvider.getString();
         if(service.getStudent(id)==null){
             System.out.println(" student not found");
             return ;
         }
         System.out.println("edit Student Form");
         System.out.println("First Name:");
-        String firstName = scanner.nextLine();
+        String firstName = ValidInputProvider.getString();
         System.out.println("Last Name");
-        String lastName = scanner.nextLine();
+        String lastName = ValidInputProvider.getString();
         System.out.println("Email:");
-        String email = ValidInputProvider.getString();
+        String email = ValidInputProvider.getEmail();
         System.out.println("PhoneNumber:");
         String phoneNumber = ValidInputProvider.getPhone();
         System.out.println("Department");
-        String department = scanner.nextLine();
+        String department = ValidInputProvider.getString();
         service.editStudent(id , firstName,lastName,email,phoneNumber,department);
         System.out.println(" student was updated!");
     }
@@ -123,8 +116,7 @@ public class StudentController {
             System.out.println(student);
         }
         System.out.println(" Enter the id of the student you want to undo the deletion");
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
+        String id = ValidInputProvider.getString();
         boolean undone = service.undoDeleteStudent(id);
         if(undone) {
             System.out.println("Student deletion was undone");
@@ -133,6 +125,3 @@ public class StudentController {
         }
     }
 }
-
-
-
