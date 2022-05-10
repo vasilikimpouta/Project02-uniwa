@@ -25,6 +25,13 @@ public class StudentController {
 
     public void addStudent() {
         System.out.println("Create Student Form");
+        Student details = getStudentsDetails();
+        service.createStudent(details.getFirstName(), details.getLastName(), details.getEmail(),
+                details.getPhoneNumber(), details.getDepartment());
+    }
+
+    private Student getStudentsDetails() {
+
         System.out.println("First Name:");
         String firstName = ValidInputProvider.getString();
         System.out.println("Last Name");
@@ -35,7 +42,8 @@ public class StudentController {
         String phoneNumber = ValidInputProvider.getPhone();
         System.out.println("Department");
         String department = ValidInputProvider.getString();
-        service.createStudent(firstName, lastName, email, phoneNumber, department);
+
+        return new Student(firstName, lastName, email, phoneNumber, department);
     }
 
     public void searchStudents() {
@@ -60,8 +68,8 @@ public class StudentController {
         }
         System.out.println("enter the id of the student :");
         String id = ValidInputProvider.getString();
-        boolean isDeleted = service.deleteStudent(id) ;
-        if(isDeleted){
+        boolean isDeleted = service.deleteStudent(id);
+        if (isDeleted) {
             System.out.println(" successfully deleted");
         } else {
             System.out.println("not found ");
@@ -91,22 +99,18 @@ public class StudentController {
         }
         System.out.println("choose a student by id");
         String id = ValidInputProvider.getString();
-        if(service.getStudent(id)==null){
+        if (service.getStudent(id) == null) {
             System.out.println(" student not found");
-            return ;
+            return;
         }
         System.out.println("edit Student Form");
-        System.out.println("First Name:");
-        String firstName = ValidInputProvider.getString();
-        System.out.println("Last Name");
-        String lastName = ValidInputProvider.getString();
-        System.out.println("Email:");
-        String email = ValidInputProvider.getEmail();
-        System.out.println("PhoneNumber:");
-        String phoneNumber = ValidInputProvider.getPhone();
-        System.out.println("Department");
-        String department = ValidInputProvider.getString();
-        service.editStudent(id , firstName,lastName,email,phoneNumber,department);
+        Student newDetails = getStudentsDetails();
+        service.editStudent(id,
+                newDetails.getFirstName(),
+                newDetails.getLastName(),
+                newDetails.getEmail(),
+                newDetails.getPhoneNumber(),
+                newDetails.getDepartment());
         System.out.println(" student was updated!");
     }
 
@@ -118,7 +122,7 @@ public class StudentController {
         System.out.println(" Enter the id of the student you want to undo the deletion");
         String id = ValidInputProvider.getString();
         boolean undone = service.undoDeleteStudent(id);
-        if(undone) {
+        if (undone) {
             System.out.println("Student deletion was undone");
         } else {
             System.out.println("student not found");
